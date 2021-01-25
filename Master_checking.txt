@@ -12,3 +12,4 @@ git push
 git stash
 
 new stash line
+stash apply sample
