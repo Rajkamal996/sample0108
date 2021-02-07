@@ -1,0 +1,172 @@
+https://phoenixnap.com/kb/install-minikube-on-ubuntu#htoc-step-3-install-minikube
+
+https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
+
+ 1  clear
+    2  sudo apt-get update -y
+    3  sudo apt-get upgrade -y
+    4  sudo apt-get install curl apt-transport-https -y
+    5  wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    6  sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+    7  sudo chmod 755 /usr/local/bin/minikube
+    8  minikube version
+    9  curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+   10  chmod +x ./kubectl
+   11  sudo mv ./kubectl /usr/local/bin/kubectl
+   12  kubectl version -o json
+   13  minikube start
+   14  kubectl config view
+   15  kubectl cluster-info
+   16  minikube start --vm-driver=none
+   17  curl -fsSL  https://get.docker.com | sh
+   18  minikube start --vm-driver=none
+   19  sudo docker ps
+   20  minikube start
+   21  sudo usermod -aG docker vagrant
+   22  minikube start
+   23  sudo chmod 666 /var/run/docekr.sock
+   24  sudo chmod 666 /var/run/docker.sock
+   25  touch /var/run/docker.sock
+   26  minikube start
+   27  chmod +x ./kubectl
+   28  history
+   29  ls
+    32  history
+   33  kubectl -v
+   34  kubectl versino
+   35  kubectl version
+   36  kubectl get nodes
+   37  ip add
+   38  minikube addons enable ingress
+   39  clear
+   40  minikube addons enable ingress
+   41  kubectl get pods -n kube-system
+   42  kubectl get namespace
+   43  kubectl create namespace boss
+   44  kubectl get namespace
+   45  kubectl get namespace boss -o yaml
+   46  kubectl get pods -n boss
+   47  kubectl get pods -n kube-systems
+   48  kubectl get pods -n kube-system
+   49  kubectl get pods -n kube-system -o wide
+   50  clear
+   51  kubectl get pods -n kube-system -o wide
+   52  clear
+   53  kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+   54  kubectl get pods -all
+   55  kubectl get pods -ALL
+   56  kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0 -n boss
+   57  kubectl get pods -ALL
+   58  clear
+   59  kubectl get deployments -n boss
+   60  kubectl get deployments -n boss -o wide
+   61  kubectl describe deployments web -n boss
+    62  clear
+   63  kubectl expose deployment web --type=NodePort --port=8080
+   64  kubectl expose deployment web --type=NodePort --port=8080 -n boss
+   65  kubectl get service web
+   66  kubectl get service web -n boss
+   67  minikube service web --url
+   68  curl http://192.168.49.2:30678
+   69  minikube service web --url -n boss
+   70  curl http://192.168.49.2:30278
+   71  cat <<EOF | tee sample.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: hello-world.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 8080
+EOF
+
+ 72  clear
+   73  kubectl apply -f sample.yaml
+   74  kubectl get ingress
+   75  curl http://hello-world.info
+   76  vi /etc/hosts
+   77  sudo vi /etc/hosts
+   78  curl http://hello-world.info
+   79  kubectl apply -f sample.yaml -n boss
+   80  vi sample.yaml
+   81  kubectl apply -f sample.yaml -n boss
+   82  vi sample.yaml
+   83  kubectl apply -f sample.yaml -n boss
+   84  kubectl get ingress
+   85  kubectl get ingress -n boss
+   86  kubectl delete ingress example-ingress
+   87  kubectl delete ingress example-ingressi1 -n boss
+   88  kubectl apply -f sample.yaml -n boss
+   89  kubectl get ingress
+   90  vi sample.yaml
+   91  kubectl apply -f sample.yaml -n boss
+   92  kubectl get ingress
+   93  kubectl get ingress -n boss
+   94  kubectl delete example-ingressi1
+   95  kubectl delete ingress  example-ingressi1
+   96  kubectl delete ingress  example-ingressi1 -n boss
+   97  kubectl get ingress
+   98  kubectl get ingress -n boss
+   99  curl http://hello-world.info
+  100  kubectl create deployment web2 --image=gcr.io/google-samples/hello-app:2.0
+    101  kubectl create deployment web2 --image=gcr.io/google-samples/hello-app:2.0 -n boss
+  102  kubectl get deployment -n boss
+  103  kubectl get deployment -n boss -o wide
+  104  vi sample.yaml
+  105  cat <<EOF | tee sample.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: hello-world.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 8080
+        - path: /v2
+            pathType: Prefix
+            backend:
+              service:
+                name: web2
+                port:
+                  number: 8080
+EOF
+
+  106  cat sample.yaml
+  107  q!
+  108  clear
+  109  kubectl expose deployment web2 --port=8080 --type=NodePort
+  110  kubectl expose deployment web2 --port=8080 --type=NodePort -n boss
+  111  kubectl apply -f sample.yaml  -n boss
+  112  ls
+  113  cat sample.yaml
+  114  vi sample.yaml
+  115  kubectl apply -f sample.yaml  -n boss
+  116  kubctl get ingress -n boss
+  117  kubectl get ingress -n boss
+  118  curl http://hello-world.info
+  119  curl http://hello-world.info/v2
+  120  curl http://hello-world.info/
+  121  history
+  122  history >  kubectl.txt
+
