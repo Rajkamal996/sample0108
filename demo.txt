@@ -1,1 +1,3 @@
-this is for sample
+# create the VM env in local machine
+https://www.vagrantup.com/downloads
+https://www.virtualbox.org/
